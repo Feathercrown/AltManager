@@ -14,6 +14,8 @@ public abstract class ImprisonmentHandler implements Listener {
 	}
 
 	abstract int getImprisonedCount(Set<UUID> alts);
+
+	abstract int getImprisonedCount(Set<UUID> alts, int pearltype);
 	
 	abstract boolean isImprisoned(UUID player);
 }
