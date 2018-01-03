@@ -97,7 +97,7 @@ public class AltManager extends ACivMod implements Listener {
 				}
 			}
 		}
-		int count = prisonHandler.getImprisonedCount(alts);
+		int count = prisonHandler.getImprisonedCountByPearlType(alts, 1);
 		getLogger().info("Imprisoned count for " + event.getUniqueId() + ": " + count);
 		if(count >= maxImprisoned) {
 			if(!prisonHandler.isImprisoned(event.getUniqueId())) {
