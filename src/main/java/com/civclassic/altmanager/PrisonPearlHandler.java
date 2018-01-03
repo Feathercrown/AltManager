@@ -22,7 +22,7 @@ public class PrisonPearlHandler extends ImprisonmentHandler {
 		if(event.getType() != PrisonPearlEvent.Type.NEW) return;
 		UUID imprisoned = event.getPrisonPearl().getImprisonedId();
 		Set<UUID> alts = plugin.getAlts(imprisoned);
-		int count = getImprisonedCount(alts);
+		int count = getImprisonedCount(alts, 1);
 		if(count < plugin.getMaxImprisoned()) {
 			return;
 		}
@@ -40,6 +40,17 @@ public class PrisonPearlHandler extends ImprisonmentHandler {
 		Set<UUID> imprisoned = new HashSet<UUID>();
 		for(UUID alt : alts) {
 			if(PrisonPearlPlugin.getPrisonPearlManager().isImprisoned(alt)) {
+				imprisoned.add(alt);
+			}
+		}
+		return imprisoned.size();
+	}
+	
+	@Override
+	public int getImprisonedCount(Set<UUID> alts, int pearltype) {
+		Set<UUID> imprisoned = new HashSet<UUID>();
+		for(UUID alt : alts) {
+  			if(ExilePearlPlugin.getApi().isPlayerExiled(alt) && (ExilePearlPlugin.getApi().getPearl(alt).getPearlType().toInt() == pearltype)) {
 				imprisoned.add(alt);
 			}
 		}
